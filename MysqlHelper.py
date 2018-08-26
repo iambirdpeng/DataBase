@@ -15,9 +15,13 @@ class Helper(object):
 
     def open_db(self):
         """连接上mysql"""
-        self.conn = connect(host=self.host, port=self.port,user=self.user, passwd=self.passwd, db=self.db)
-        self.cursor = self.conn.cursor()
-        print('open ok')
+        try:
+            self.conn = connect(host=self.host, port=self.port,user=self.user, passwd=self.passwd, db=self.db)
+            self.cursor = self.conn.cursor()
+            print('open ok')
+        except Exception:
+            print('mysql connect fail')
+
 
     def close_db(self):
         """关闭数据库链接"""
